@@ -1,44 +1,15 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
-            steps {pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo "Hello from Jenkins + GitHub!"
-                sh '''
-                    echo "Running on: $(hostname)"
-                    git --version || echo "git not found in PATH?"
-                    ls -R
-                '''
-            }
-        }
+/ Very simple scripted pipeline to prove everything works
+node {
+    stage('Checkout') {
+        checkout scm
     }
-}
 
-                echo "Hello from Jenkins + GitHub!"
-                sh '''
-                    echo "Running on: $(hostname)"
-                    git --version || echo "git not found in PATH?"
-                    ls -R
-                '''
-            }
-        }
+    stage('Build') {
+        echo "Hello from Jenkins (scripted pipeline)"
+        sh '''
+            echo "Running on: $(hostname)"
+            git --version || echo "git not found in PATH?"
+            ls -R
+        '''
     }
 }
